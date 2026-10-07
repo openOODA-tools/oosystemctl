@@ -1,0 +1,21 @@
+# Maintainer: openOODA-tools <ops@openooda.org>
+pkgname=oosystemctl-bin
+_pkgname=oosystemctl
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="Capability-bounded service, socket, and timer manager for systemd userland."
+arch=('x86_64')
+url="https://github.com/openOODA-tools/oosystemctl"
+license=('Apache-2.0')
+depends=('glibc')
+provides=('oosystemctl')
+conflicts=('oosystemctl')
+source_x86_64=("${url}/releases/download/v${pkgver}/oosystemctl-linux-x86_64"
+               "uninstall.sh::https://raw.githubusercontent.com/openOODA-tools/${_pkgname}/v${pkgver}/uninstall.sh")
+sha256sums_x86_64=('SKIP'
+                   'SKIP')
+
+package() {
+    install -Dm755 "${srcdir}/oosystemctl-linux-x86_64" "${pkgdir}/usr/bin/oosystemctl"
+    install -Dm755 uninstall.sh "${pkgdir}/usr/bin/oosystemctl-uninstall"
+}
